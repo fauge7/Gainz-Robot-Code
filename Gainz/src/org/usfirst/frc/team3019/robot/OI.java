@@ -30,6 +30,7 @@ public class OI {
     public Button button4 = new JoystickButton(Drive,4);
     public Button button5 = new JoystickButton(Drive,5);
     public Button button6 = new JoystickButton(Drive,6);
+    public Button button12 = new JoystickButton(Drive,12);
     // Start the command when the button is pressed and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());

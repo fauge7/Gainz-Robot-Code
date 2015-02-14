@@ -14,6 +14,7 @@ public class ElevatorArms extends Subsystem{
 	public ElevatorArms() {
 		// TODO Auto-generated constructor stub
 		super();
+		arm = new Talon(RobotMap.Elevator_Arm);
 		encoder = new Encoder(RobotMap.Elevator_A,RobotMap.Elevator_B);
 	}
 

@@ -4,14 +4,15 @@ package org.usfirst.frc.team3019.robot;
 import org.usfirst.frc.team3019.robot.commands.AutonomousCommandGroup;
 import org.usfirst.frc.team3019.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3019.robot.subsystems.Elevator;
-import org.usfirst.frc.team3019.robot.subsystems.RearLift;
 import org.usfirst.frc.team3019.robot.subsystems.ElevatorArms;
+import org.usfirst.frc.team3019.robot.subsystems.RearLift;
 import org.usfirst.frc.team3019.robot.subsystems.RearLiftArms;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +29,8 @@ public class Robot extends IterativeRobot {
 	public static ElevatorArms elevatorArms;
 	public static RearLiftArms rearLiftArms;
 	public static OI oi;
-
-    CommandGroup autonomousCommand;
+	NetworkTable table;
+	CommandGroup autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -41,7 +42,8 @@ public class Robot extends IterativeRobot {
     	rearLift = new RearLift();
     	elevatorArms = new ElevatorArms();
     	rearLiftArms = new RearLiftArms();
-		oi = new OI();
+    	table = NetworkTable.getTable("SmartDashboard");
+    	oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonomousCommandGroup();
     }
@@ -67,7 +69,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+    	if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     /**
@@ -75,7 +77,7 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-
+    	
     }
 
     /**
