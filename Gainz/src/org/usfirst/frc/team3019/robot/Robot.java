@@ -42,7 +42,6 @@ public class Robot extends IterativeRobot {
     	rearLift = new RearLift();
     	elevatorArms = new ElevatorArms();
     	rearLiftArms = new RearLiftArms();
-    	table = NetworkTable.getTable("SmartDashboard");
     	oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonomousCommandGroup();

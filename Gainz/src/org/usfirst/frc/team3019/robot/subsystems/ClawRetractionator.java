@@ -5,13 +5,13 @@ import org.usfirst.frc.team3019.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class RearLiftArms extends Subsystem{
+public class ClawRetractionator extends Subsystem {
 
 	DoubleSolenoid soli;
-	public RearLiftArms() {
+	public ClawRetractionator() {
 		// TODO Auto-generated constructor stub
 		super();
-		soli = new DoubleSolenoid(RobotMap.Rear_Lift_D_Soli_Claw_Open, RobotMap.Rear_Lift_D_Soli_Claw_Close);
+		soli = new DoubleSolenoid(RobotMap.Rear_Lift_D_Soli_Claw_Deploy_F, RobotMap.Rear_Lift_D_Soli_Claw_Deploy_R);
 	}
 
 	@Override
@@ -20,9 +20,11 @@ public class RearLiftArms extends Subsystem{
 
 	}
 	public void Extend(){
+		System.out.println("extending");
 		soli.set(DoubleSolenoid.Value.kForward);
 	}
 	public void Retract(){
+		System.out.println("retracting");
 		soli.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void DoNothing(){

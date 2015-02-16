@@ -8,10 +8,11 @@ public class LiftRear extends Command {
 
 	boolean  up;
 	
-	public LiftRear(boolean up) {
+	public LiftRear(boolean up,double TimeOut) {
 		// TODO Auto-generated constructor stub
 		this.up = up;
 		requires(Robot.rearLift);
+		setTimeout(TimeOut);
 	}
 	@Override
 	protected void initialize() {
@@ -22,17 +23,21 @@ public class LiftRear extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if(up)
+		if(up){
+			System.out.println("extend");
 			Robot.rearLift.Extend();
-		else
+		}
+		else{
 			Robot.rearLift.Retract();
-			
+			System.out.println();
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		
+		return isTimedOut();
 	}
 
 	@Override

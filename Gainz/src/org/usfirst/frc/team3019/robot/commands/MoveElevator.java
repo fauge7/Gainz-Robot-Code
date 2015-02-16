@@ -3,6 +3,7 @@ package org.usfirst.frc.team3019.robot.commands;
 import org.usfirst.frc.team3019.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveElevator extends Command{
 
@@ -20,6 +21,7 @@ public class MoveElevator extends Command{
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
+		SmartDashboard.putBoolean("Elevator Limit", Robot.elevator.limit.get());
 		Robot.elevator.move();
 	}
 

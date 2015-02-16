@@ -21,7 +21,16 @@ public class MoveElevatorArms extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		Robot.elevatorArms.setSpeed(RobotMap.SomeSpeedForLaterSADGSDGDG);
+		if(Robot.oi.buttonFrontOpen.get()){
+			Robot.elevatorArms.setSpeed(RobotMap.SomeSpeedForLaterSADGSDGDG);
+		}
+		else if(Robot.oi.buttonFrontClose.get()){
+			Robot.elevatorArms.setSpeed(-RobotMap.SomeSpeedForLaterSADGSDGDG);
+		}
+		else{
+			Robot.elevatorArms.setSpeed(0);
+		}
+		
 	}
 
 	@Override

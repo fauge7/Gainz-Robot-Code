@@ -9,6 +9,7 @@ public class Drive extends Command{
 	public Drive() {
 		// TODO Auto-generated constructor stub
 		requires(Robot.driveTrain);
+		
 	}
 
 	@Override

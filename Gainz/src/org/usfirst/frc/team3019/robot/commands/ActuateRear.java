@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ActuateRear extends Command {
 
 	boolean close;
-	public ActuateRear(boolean close) {
+	public ActuateRear(boolean close, double TimeOut) {
 		// TODO Auto-generated constructor stub
 		this.close = close;
 		requires(Robot.rearLiftArms);
@@ -29,7 +29,7 @@ public class ActuateRear extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return isTimedOut();
 	}
 
 	@Override

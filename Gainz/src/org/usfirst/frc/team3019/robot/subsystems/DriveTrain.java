@@ -4,6 +4,8 @@ import org.usfirst.frc.team3019.robot.Robot;
 import org.usfirst.frc.team3019.robot.RobotMap;
 import org.usfirst.frc.team3019.robot.commands.Drive;
 
+import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Talon;
@@ -15,6 +17,9 @@ public class DriveTrain extends Subsystem{
 	Talon Drive_Left;
 	Talon Drive_Center_A;
 	Talon Drive_Center_B;
+	Encoder Right;
+	Encoder Left;
+	Encoder Center;
 	RobotDrive drive;
 	
 	public DriveTrain() {
@@ -26,6 +31,12 @@ public class DriveTrain extends Subsystem{
 		drive.setInvertedMotor(MotorType.kFrontRight, true);
 		Drive_Center_A = new Talon(RobotMap.Drive_Center_A);
 		Drive_Center_B = new Talon(RobotMap.Drive_Center_B);
+		Right = new Encoder(RobotMap.Encoder_Drive_Right_A, RobotMap.Encoder_Drive_Right_B, false, CounterBase.EncodingType.k4X);
+		Left = new Encoder(RobotMap.Encoder_Drive_Left_A, RobotMap.Encoder_Drive_Left_B, false, CounterBase.EncodingType.k4X);
+		Center = new Encoder(RobotMap.Encoder_Drive_Center_A, RobotMap.Encoder_Drive_Center_B, false, CounterBase.EncodingType.k4X);
+		
+		
+		
 	}
 	@Override
 	protected void initDefaultCommand() {
@@ -36,8 +47,8 @@ public class DriveTrain extends Subsystem{
 	
 	//test drive code
 		//deadzone code
-		double Rotate = Robot.oi.Drive.getTwist() 	> RobotMap.Drive_DeadZone_Turn 	? Robot.oi.Drive.getTwist() : 0;
-		double Y = 		Robot.oi.Drive.getY() 		> RobotMap.Drive_DeadZone_Y 	? Robot.oi.Drive.getY() 	: 0;
+		double Rotate = Math.abs(Robot.oi.Drive.getTwist()) 	> RobotMap.Drive_DeadZone_Turn 	? -Robot.oi.Drive.getTwist() : 0;
+		double Y = 		Math.abs(Robot.oi.Drive.getY()) 		> RobotMap.Drive_DeadZone_Y 	? -Robot.oi.Drive.getY() 	: 0;
 		drive.arcadeDrive(Y,Rotate);
 
 		/*if(Math.abs(Robot.oi.Drive.getTwist()) > .45){
@@ -54,19 +65,19 @@ public class DriveTrain extends Subsystem{
 		//setting the middle wheel speed
 		if(Robot.oi.button3.get()){
 			Drive_Center_A.set(.75);
-			Drive_Center_B.set(-.75);
+			Drive_Center_B.set(.75);
 		}
 		else if(Robot.oi.button4.get()){
 			Drive_Center_A.set(-.75);
-			Drive_Center_B.set(.75);
+			Drive_Center_B.set(-.75);
 		}
 		else if(Robot.oi.button5.get()){
 			Drive_Center_A.set(1);
-			Drive_Center_B.set(-1);
+			Drive_Center_B.set(1);
 		}
 		else if(Robot.oi.button6.get()){
 			Drive_Center_A.set(-1);
-			Drive_Center_B.set(1);	
+			Drive_Center_B.set(-1);	
 		}
 		else{
 			Drive_Center_A.set(0);
@@ -78,5 +89,10 @@ public class DriveTrain extends Subsystem{
 	}
 	public void doNothing() {
 		drive.arcadeDrive(0, 0);
+	}
+	public void resetEncoder(){
+		Right.reset();
+		Left.reset();
+		Center.reset();
 	}
 }

@@ -3,19 +3,16 @@ package org.usfirst.frc.team3019.robot.subsystems;
 import org.usfirst.frc.team3019.robot.RobotMap;
 import org.usfirst.frc.team3019.robot.commands.MoveElevatorArms;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ElevatorArms extends Subsystem{
 
 	Talon arm;
-	Encoder encoder;
 	public ElevatorArms() {
 		// TODO Auto-generated constructor stub
 		super();
 		arm = new Talon(RobotMap.Elevator_Arm);
-		encoder = new Encoder(RobotMap.Elevator_A,RobotMap.Elevator_B);
 	}
 
 	@Override
@@ -24,6 +21,7 @@ public class ElevatorArms extends Subsystem{
 		setDefaultCommand(new MoveElevatorArms());
 	}
 	public void setSpeed(double speed){
+		System.out.println(speed);
 		arm.set(speed);
 	}
 

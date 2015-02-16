@@ -11,7 +11,7 @@ public class RearLift extends Subsystem {
 	public RearLift() {
 		// TODO Auto-generated constructor stub
 		super();
-		soli = new DoubleSolenoid(RobotMap.Rear_Lift_D_Soli_F_E, RobotMap.Rear_Lift_D_Soli_R_E);
+		soli = new DoubleSolenoid(RobotMap.Rear_Lift_D_Soli_Forward, RobotMap.Rear_Lift_D_Soli_Retract);
 	}
 
 	@Override
@@ -20,9 +20,11 @@ public class RearLift extends Subsystem {
 
 	}
 	public void Extend(){
+		System.out.println("extending");
 		soli.set(DoubleSolenoid.Value.kForward);
 	}
 	public void Retract(){
+		System.out.println("retracting");
 		soli.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void DoNothing(){

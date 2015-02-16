@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3019.robot;
 
+import org.usfirst.frc.team3019.robot.commands.ActuateRear;
+import org.usfirst.frc.team3019.robot.commands.LiftRear;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -31,15 +34,29 @@ public class OI {
     public Button button5 = new JoystickButton(Drive,5);
     public Button button6 = new JoystickButton(Drive,6);
     public Button button12 = new JoystickButton(Drive,12);
+
+    //xbox controls
+    public Button buttonFrontOpen = new JoystickButton(Xbox,1);
+    public Button buttonFrontClose = new JoystickButton(Xbox,4);
+    public Button buttonOpen = new JoystickButton(Xbox,2);
+    public Button buttonClose = new JoystickButton(Xbox,3);
+    public Button buttonElevatorUp = new JoystickButton(Xbox,5);
+    public Button buttonElevatorDown = new JoystickButton(Xbox,6);
+    
+    //public Button buttonClawClose = new JoystickButton(Xbox,4);
+    //public Button buttonClawOpen = new JoystickButton(Xbox,4);
+    
+    
     // Start the command when the button is pressed and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     public OI() {
 		// TODO Auto-generated constructor stub
     	//button1.whenPressed();
-    
-    
-    
+    buttonElevatorDown.whenPressed(new LiftRear(false, .5));
+    buttonElevatorUp.whenPressed(new LiftRear(true, .5));
+    buttonClose.whenPressed(new ActuateRear(true,.5));
+    buttonOpen.whenPressed(new ActuateRear(false, .5));
     }
     // Run the command while the button is being held down and interrupt it once
     // the button is released.

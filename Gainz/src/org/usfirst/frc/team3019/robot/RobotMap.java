@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3019.robot;
 
+import edu.wpi.first.wpilibj.DigitalSource;
+
 
 
 /**
@@ -14,24 +16,25 @@ public class RobotMap {
 	public static final int Elevator_B = 1;
 	
 	//motor pwm channels
-	public static final int Drive_Right = 0;
-	public static final int Drive_Left = 1;
+	public static final int Drive_Right = 1;
+	public static final int Drive_Left = 3;
 	public static final int Drive_Center_A = 2;
-	public static final int Drive_Center_B = 3;
-	public static final int ElevatorTop = 4;
-	public static final int ElevatorBottom = 5;
-	public static final int Elevator_Arm = 6;
+	public static final int Drive_Center_B = 0;
+	public static final int ElevatorBottom = 4;
+	public static final int Elevator_Arm = 5;
     
     
 	//solinoid constants
-	public static final int Rear_Lift_D_Soli_F_E = 0;
-	public static final int Rear_Lift_D_Soli_R_E = 1;
-	public static final int Rear_Lift_D_Soli_F = 2;
-	public static final int Rear_Lift_D_Soli_R = 3;
-	
+	public static final int Rear_Lift_D_Soli_Forward = 0;
+	public static final int Rear_Lift_D_Soli_Retract = 1;
+	public static final int Rear_Lift_D_Soli_Claw_Open = 2;
+	public static final int Rear_Lift_D_Soli_Claw_Close = 3;
+	public static final int Rear_Lift_D_Soli_Claw_Deploy_F = 4;
+	public static final int Rear_Lift_D_Soli_Claw_Deploy_R = 5;
+	public static final int Elevator_Lock_R = 6;
 	
 	//Elelvator Arms
-	public static final double SomeSpeedForLaterSADGSDGDG = 0;
+	public static final double SomeSpeedForLaterSADGSDGDG = 0.5;
 	
 	
 	public static final double Drive_DeadZone_Y = 0.1;
@@ -39,5 +42,23 @@ public class RobotMap {
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
+    // public static int rangefinderModule = 1;\
+	
+	//dio ports
+	public static final int Encoder_Drive_Right_A = 0;
+	public static final int Encoder_Drive_Right_B = 1;
+	
+	public static final int Encoder_Drive_Left_A = 2;
+	public static final int Encoder_Drive_Left_B = 3;
+	
+	public static final int Encoder_Drive_Center_A = 4;
+	public static final int Encoder_Drive_Center_B = 5;
+	
+	public static final int Encoder_Elevator_A = 6;
+	public static final int Encoder_Elevator_B = 7;
+	
+	//limit switcg dio
+	public static final int Limit_Switch_Elevator = 8;
+	
+	
 }
