@@ -9,7 +9,18 @@ public class AutonomousCommandGroup extends CommandGroup {
 	
 		//addParallel(command, timeout);
 		//addSequential(command, timeout);
-
 		
+		///picks up a tote start at just above the lip
+		addParallel(new MoveElevatorArms(.6),.3);
+		addSequential(new MoveElevator(1),1.1);
+		
+		//addSequential(new );
+		
+		
+//		addSequential(new Drive(.7),.4);
+//		addSequential(new Drive(0), .2);
+//		addParallel(new MoveElevator(-1),1.0);
+//		addSequential(new MoveElevatorArms(-.6), .3);
+//		
 	}
 }

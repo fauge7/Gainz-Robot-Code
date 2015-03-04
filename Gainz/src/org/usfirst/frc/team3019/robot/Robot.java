@@ -2,17 +2,21 @@
 package org.usfirst.frc.team3019.robot;
 
 import org.usfirst.frc.team3019.robot.commands.AutonomousCommandGroup;
+import org.usfirst.frc.team3019.robot.subsystems.ClawRetractionator;
 import org.usfirst.frc.team3019.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3019.robot.subsystems.Elevator;
 import org.usfirst.frc.team3019.robot.subsystems.ElevatorArms;
 import org.usfirst.frc.team3019.robot.subsystems.RearLift;
 import org.usfirst.frc.team3019.robot.subsystems.RearLiftArms;
+import org.usfirst.frc.team3019.robot.subsystems.Sensor;
+import org.usfirst.frc.team3019.robot.subsystems.Spinner;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +32,11 @@ public class Robot extends IterativeRobot {
 	public static RearLift rearLift;
 	public static ElevatorArms elevatorArms;
 	public static RearLiftArms rearLiftArms;
+	public static ClawRetractionator clawRetractionator;
+	public static Spinner spin;
 	public static OI oi;
-	NetworkTable table;
+	public static Sensor sensor;
+	public static SerialPort sp;
 	CommandGroup autonomousCommand;
 
     /**
@@ -42,6 +49,13 @@ public class Robot extends IterativeRobot {
     	rearLift = new RearLift();
     	elevatorArms = new ElevatorArms();
     	rearLiftArms = new RearLiftArms();
+    	clawRetractionator = new ClawRetractionator();
+    	spin = new Spinner();
+    	//sensor = new Sensor();
+    	//sp = new SerialPort(115200, Port.kUSB);
+    	//sp.writeString("mode,AT");
+    	//sp.writeString("asc_out,RPYIMU");
+    	
     	oi = new OI();
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonomousCommandGroup();

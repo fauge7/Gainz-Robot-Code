@@ -7,11 +7,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class MoveElevator extends Command{
 
+	double speed;
+	
 	public MoveElevator() {
 		// TODO Auto-generated constructor stub
 		requires(Robot.elevator);
+		this.speed = 500;
 	}
-
+	public MoveElevator(double speed) {
+		// TODO Auto-generated constructor stub
+		requires(Robot.elevator);
+		this.speed = speed;
+	}
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
@@ -22,7 +29,15 @@ public class MoveElevator extends Command{
 	protected void execute() {
 		// TODO Auto-generated method stub
 		SmartDashboard.putBoolean("Elevator Limit", Robot.elevator.limit.get());
-		Robot.elevator.move();
+//		SmartDashboard.putNumber("Elevator Encoder:", Robot.elevator.encoder.getRaw());
+//		SmartDashboard.putNumber("Elevator Distance", Robot.elevator.encoder.getDistance());
+//		
+		if(speed == 500){
+			//Robot.elevator.move();
+		}
+		else{
+			Robot.elevator.move(speed);
+		}	
 	}
 
 	@Override
@@ -42,5 +57,4 @@ public class MoveElevator extends Command{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -21,7 +21,6 @@ public class ElevatorArms extends Subsystem{
 		setDefaultCommand(new MoveElevatorArms());
 	}
 	public void setSpeed(double speed){
-		System.out.println(speed);
 		arm.set(speed);
 	}
 

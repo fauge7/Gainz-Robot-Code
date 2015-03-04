@@ -17,11 +17,12 @@ public class DriveTrain extends Subsystem{
 	Talon Drive_Left;
 	Talon Drive_Center_A;
 	Talon Drive_Center_B;
-	Encoder Right;
-	Encoder Left;
-	Encoder Center;
+	public Encoder Right;
+	public Encoder Left;
+	public Encoder Center;
 	RobotDrive drive;
-	
+	double ftperpulse;
+	static double inchtofeet = 61.0/12.0;
 	public DriveTrain() {
 		// TODO Auto-generated constructor stub
 		super();
@@ -32,9 +33,14 @@ public class DriveTrain extends Subsystem{
 		Drive_Center_A = new Talon(RobotMap.Drive_Center_A);
 		Drive_Center_B = new Talon(RobotMap.Drive_Center_B);
 		Right = new Encoder(RobotMap.Encoder_Drive_Right_A, RobotMap.Encoder_Drive_Right_B, false, CounterBase.EncodingType.k4X);
+		ftperpulse = inchtofeet/4753.0;
+		Right.setDistancePerPulse(ftperpulse);
 		Left = new Encoder(RobotMap.Encoder_Drive_Left_A, RobotMap.Encoder_Drive_Left_B, false, CounterBase.EncodingType.k4X);
+		ftperpulse = inchtofeet/4771.0;
+		Left.setDistancePerPulse(ftperpulse);
 		Center = new Encoder(RobotMap.Encoder_Drive_Center_A, RobotMap.Encoder_Drive_Center_B, false, CounterBase.EncodingType.k4X);
-		
+		//ftperpulse = 
+		//Center.setDistancePerPulse(/80.0);
 		
 		
 	}
@@ -47,45 +53,27 @@ public class DriveTrain extends Subsystem{
 	
 	//test drive code
 		//deadzone code
-		double Rotate = Math.abs(Robot.oi.Drive.getTwist()) 	> RobotMap.Drive_DeadZone_Turn 	? -Robot.oi.Drive.getTwist() : 0;
-		double Y = 		Math.abs(Robot.oi.Drive.getY()) 		> RobotMap.Drive_DeadZone_Y 	? -Robot.oi.Drive.getY() 	: 0;
+		double Rotate = Math.abs(Robot.oi.Drive.getX()) 	> RobotMap.Drive_DeadZone_Turn 	? -Robot.oi.Drive.getX() : 0;
+		double Y = 		Math.abs(Robot.oi.Drive.getY()) 		> RobotMap.Drive_DeadZone_Y 	? -Robot.oi.Drive.getY() 	: 0; 
+		if(Y < 0){
+			Y = -Math.pow(Y, 2);
+		}
+		else{
+			Y = Math.pow(Y, 2);
+		}
 		drive.arcadeDrive(Y,Rotate);
 
-		/*if(Math.abs(Robot.oi.Drive.getTwist()) > .45){
-			System.out.println(Robot.oi.Drive.getTwist());
-			Drive_Left.set(Robot.oi.Drive.getTwist());
-			Drive_Right.set(Robot.oi.Drive.getTwist());
-		}
-		else{
-			double YSpeed = Robot.oi.Drive.getY();
-			YSpeed = Math.abs(YSpeed) > .1 ? -YSpeed : 0;
-			Drive_Left.set(YSpeed);
-			Drive_Right.set(-YSpeed);
-		 }*/
 		//setting the middle wheel speed
-		if(Robot.oi.button3.get()){
-			Drive_Center_A.set(.75);
-			Drive_Center_B.set(.75);
+		double someThing = Robot.oi.Drive.getRawAxis(4);
+		System.out.println(someThing);
+		if(someThing < .05 && someThing > -.05){
+			someThing = 0;
 		}
-		else if(Robot.oi.button4.get()){
-			Drive_Center_A.set(-.75);
-			Drive_Center_B.set(-.75);
-		}
-		else if(Robot.oi.button5.get()){
-			Drive_Center_A.set(1);
-			Drive_Center_B.set(1);
-		}
-		else if(Robot.oi.button6.get()){
-			Drive_Center_A.set(-1);
-			Drive_Center_B.set(-1);	
-		}
-		else{
-			Drive_Center_A.set(0);
-			Drive_Center_B.set(0);		
-		}
+		Drive_Center_A.set(someThing);
+		Drive_Center_B.set(someThing);		
 	}
 	public void driveForward(double speed){
-			Robot.driveTrain.Omni();
+			drive.drive(speed, 0);
 	}
 	public void doNothing() {
 		drive.arcadeDrive(0, 0);
@@ -94,5 +82,9 @@ public class DriveTrain extends Subsystem{
 		Right.reset();
 		Left.reset();
 		Center.reset();
+	}
+	public void Omni(double speed) {
+		// TODO Auto-generated method stub
+		drive.drive(speed, 0);
 	}
 }

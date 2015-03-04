@@ -20,7 +20,6 @@ public class ClawRetractionator extends Subsystem {
 
 	}
 	public void Extend(){
-		System.out.println("extending");
 		soli.set(DoubleSolenoid.Value.kForward);
 	}
 	public void Retract(){

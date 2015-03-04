@@ -20,11 +20,9 @@ public class RearLift extends Subsystem {
 
 	}
 	public void Extend(){
-		System.out.println("extending");
 		soli.set(DoubleSolenoid.Value.kForward);
 	}
 	public void Retract(){
-		System.out.println("retracting");
 		soli.set(DoubleSolenoid.Value.kReverse);
 	}
 	public void DoNothing(){

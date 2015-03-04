@@ -7,9 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveElevatorArms extends Command {
 
+	double speed;
 	public MoveElevatorArms() {
 		// TODO Auto-generated constructor stub
 		requires(Robot.elevatorArms);
+		speed = 500;
+	}
+
+	public MoveElevatorArms(double i) {
+		// TODO Auto-generated constructor stub
+		requires(Robot.elevatorArms);
+		this.speed = i;
 	}
 
 	@Override
@@ -21,16 +29,20 @@ public class MoveElevatorArms extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if(Robot.oi.buttonFrontOpen.get()){
-			Robot.elevatorArms.setSpeed(RobotMap.SomeSpeedForLaterSADGSDGDG);
-		}
-		else if(Robot.oi.buttonFrontClose.get()){
-			Robot.elevatorArms.setSpeed(-RobotMap.SomeSpeedForLaterSADGSDGDG);
+		if(speed != 500){
+			Robot.elevatorArms.setSpeed(speed);
 		}
 		else{
-			Robot.elevatorArms.setSpeed(0);
+			if(Robot.oi.ArmOpen.get()){
+				Robot.elevatorArms.setSpeed(RobotMap.SomeSpeedForLaterSADGSDGDG);
+			}
+			else if(Robot.oi.ArmClose.get()){
+				Robot.elevatorArms.setSpeed(-RobotMap.SomeSpeedForLaterSADGSDGDG);
+			}
+			else{
+				Robot.elevatorArms.setSpeed(0);
+			}
 		}
-		
 	}
 
 	@Override

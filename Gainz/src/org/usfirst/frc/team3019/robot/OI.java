@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3019.robot;
 
 import org.usfirst.frc.team3019.robot.commands.ActuateRear;
+import org.usfirst.frc.team3019.robot.commands.Deploy;
 import org.usfirst.frc.team3019.robot.commands.LiftRear;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,21 +28,31 @@ public class OI {
     //// TRIGGERING COMMANDS WITH BUTTONS
     // Once you have a button, it's trivial to bind it to a button in one of
     // three ways:
-    public Button button1 = new JoystickButton(Drive,1);
-    public Button button2= new JoystickButton(Drive,2);
+    
+    public Button ArmOpen = new JoystickButton(Drive,1);
+    public Button ArmClose = new JoystickButton(Drive,2);
     public Button button3 = new JoystickButton(Drive,3);
     public Button button4 = new JoystickButton(Drive,4);
-    public Button button5 = new JoystickButton(Drive,5);
-    public Button button6 = new JoystickButton(Drive,6);
-    public Button button12 = new JoystickButton(Drive,12);
+    public Button button5  = new JoystickButton(Drive,5);
+    public Button button6  = new JoystickButton(Drive,6);
+    
+    
+    public Button ElevatorFastUp = new JoystickButton(Drive,9);
+    public Button ElevatorSlowUp = new JoystickButton(Drive,10);
+    public Button ElevatorFastDown = new JoystickButton(Drive,11);
+    public Button ElevatorSlowDown = new JoystickButton(Drive,12);
+    
+    
 
     //xbox controls
-    public Button buttonFrontOpen = new JoystickButton(Xbox,1);
-    public Button buttonFrontClose = new JoystickButton(Xbox,4);
+    //public Button ClawDeploy = new JoystickButton(Xbox,1);
+    //public Button ClawUnDeploy = new JoystickButton(Xbox,4);
     public Button buttonOpen = new JoystickButton(Xbox,2);
     public Button buttonClose = new JoystickButton(Xbox,3);
     public Button buttonElevatorUp = new JoystickButton(Xbox,5);
     public Button buttonElevatorDown = new JoystickButton(Xbox,6);
+    
+    public Button DriveDistance = new JoystickButton(Xbox,9);
     
     //public Button buttonClawClose = new JoystickButton(Xbox,4);
     //public Button buttonClawOpen = new JoystickButton(Xbox,4);
@@ -53,6 +64,10 @@ public class OI {
     public OI() {
 		// TODO Auto-generated constructor stub
     	//button1.whenPressed();
+    
+    //ClawDeploy.whenPressed(new Deploy(false,.5));
+    //ClawUnDeploy.whenPressed(new Deploy(true,.5));
+    
     buttonElevatorDown.whenPressed(new LiftRear(false, .5));
     buttonElevatorUp.whenPressed(new LiftRear(true, .5));
     buttonClose.whenPressed(new ActuateRear(true,.5));
